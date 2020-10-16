@@ -309,19 +309,19 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=content))
         return 0
-    if event.message.text == "蘋果即時新聞":
+    if event.message.text == "Apple":
         content = apple_news()
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content))
         return 0
-    if event.message.text == "PTT 表特版 近期大於 10 推的文章":
+    if event.message.text == "บทความล่าสุด":
         content = ptt_beauty()
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content))
         return 0
-    if event.message.text == "來張 imgur 正妹圖片":
+    if event.message.text == "imgur":
         client = ImgurClient(client_id, client_secret)
         images = client.get_album_images(album_id)
         index = random.randint(0, len(images) - 1)
@@ -333,7 +333,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token, image_message)
         return 0
-    if event.message.text == "隨便來張正妹圖片":
+    if event.message.text == "ภาพจางเจิ้งเหม่ย":
         image = requests.get(API_Get_Image)
         url = image.json().get('Url')
         image_message = ImageSendMessage(
@@ -343,25 +343,25 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token, image_message)
         return 0
-    if event.message.text == "近期熱門廢文":
+    if event.message.text == "สนใจล่าสุด":
         content = ptt_hot()
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content))
         return 0
-    if event.message.text == "即時廢文":
+    if event.message.text == "สนใจทันที":
         content = ptt_gossiping()
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content))
         return 0
-    if event.message.text == "近期上映電影":
+    if event.message.text == "ภาพยนตร์":
         content = movie()
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content))
         return 0
-    if event.message.text == "觸電網-youtube":
+    if event.message.text == "youtube":
         target_url = 'https://www.youtube.com/user/truemovie1/videos'
         rs = requests.session()
         res = rs.get(target_url, verify=False)
@@ -373,66 +373,66 @@ def handle_message(event):
                 TextSendMessage(text=seqs[random.randint(0, len(seqs) - 1)])
             ])
         return 0
-    if event.message.text == "科技新報":
+    if event.message.text == "ข่าววิทยาศาสตร์":
         content = technews()
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content))
         return 0
-    if event.message.text == "PanX泛科技":
+    if event.message.text == "PanX":
         content = panx()
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content))
         return 0
-    if event.message.text == "開始玩":
+    if event.message.text == "เริ่มเล่น":
         buttons_template = TemplateSendMessage(
             alt_text='開始玩 template',
             template=ButtonsTemplate(
-                title='選擇服務',
-                text='請選擇',
+                title='บริการ',
+                text='โปรดเลือก',
                 thumbnail_image_url='https://i.imgur.com/xQF5dZT.jpg',
                 actions=[
                     MessageTemplateAction(
-                        label='新聞',
-                        text='新聞'
+                        label='ข่าว',
+                        text='ข่าว'
                     ),
                     MessageTemplateAction(
-                        label='電影',
-                        text='電影'
+                        label='ภาพยนตร์',
+                        text='ภาพยนตร์'
                     ),
                     MessageTemplateAction(
-                        label='看廢文',
-                        text='看廢文'
+                        label='อ่านเรื่องที่สนใจ',
+                        text='อ่านเรื่องที่สนใจ'
                     ),
                     MessageTemplateAction(
-                        label='正妹',
-                        text='正妹'
+                        label='น้องสาว',
+                        text='น้องสาว'
                     )
                 ]
             )
         )
         line_bot_api.reply_message(event.reply_token, buttons_template)
         return 0
-    if event.message.text == "新聞":
+    if event.message.text == "ข่าว":
         buttons_template = TemplateSendMessage(
             alt_text='新聞 template',
             template=ButtonsTemplate(
-                title='新聞類型',
-                text='請選擇',
+                title='ประเภทข่าว',
+                text='โปรดเลือก',
                 thumbnail_image_url='https://i.imgur.com/vkqbLnz.png',
                 actions=[
                     MessageTemplateAction(
-                        label='蘋果即時新聞',
-                        text='蘋果即時新聞'
+                        label='Apple',
+                        text='Apple'
                     ),
                     MessageTemplateAction(
-                        label='科技新報',
-                        text='科技新報'
+                        label='ข่าววิทยาศาสตร์',
+                        text='ข่าววิทยาศาสตร์'
                     ),
                     MessageTemplateAction(
-                        label='PanX泛科技',
-                        text='PanX泛科技'
+                        label='PanX',
+                        text='PanX'
                     )
                 ]
             )
